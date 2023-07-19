@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "7nYxPUJRpMW5C6rkFL7v0rN2mQadv2uxQcJ6bAKV8zc=",
+  "Source": "Announcements.WebApi",
+  "BasePath": "_content/Announcements.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
