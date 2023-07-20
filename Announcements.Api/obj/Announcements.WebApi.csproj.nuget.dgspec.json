@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcements.Api\\Announcements.WebApi.csproj": {}
+    "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcements.Api\\Announcements.WebApi.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\Announcements.EF.csproj": {
+    "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\Announcements.EF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\Announcements.EF.csproj",
+        "projectUniqueName": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\Announcements.EF.csproj",
         "projectName": "Announcements.EF",
-        "projectPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\Announcements.EF.csproj",
+        "projectPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\Announcements.EF.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\obj\\",
+        "outputPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
@@ -110,14 +110,14 @@
         }
       }
     },
-    "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcements.Api\\Announcements.WebApi.csproj": {
+    "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcements.Api\\Announcements.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcements.Api\\Announcements.WebApi.csproj",
+        "projectUniqueName": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcements.Api\\Announcements.WebApi.csproj",
         "projectName": "Announcements.WebApi",
-        "projectPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcements.Api\\Announcements.WebApi.csproj",
+        "projectPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcements.Api\\Announcements.WebApi.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcements.Api\\obj\\",
+        "outputPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcements.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
@@ -139,8 +139,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\Announcements.EF.csproj": {
-                "projectPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\Announcements.EF.csproj"
+              "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\Announcements.EF.csproj": {
+                "projectPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\Announcements.EF.csproj"
               }
             }
           }

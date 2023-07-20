@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YMXmoUavqDXW41vKihlUogonPVRSYFyAWbhUL6KMCtYc6NbiyzqY5RXs93FUfCyuLbWjNJUCk0NCYcSbHbjc1g==",
+  "dgSpecHash": "/VRCVn5r8CxQzprS30K8q0OKldC3CcS1RRXBhDqlafCO2RXO2LaKvfhOCwrBGB2Bxv7CCsB5tnPVKvuX3ySqxw==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcements.Api\\Announcements.WebApi.csproj",
+  "projectFilePath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcements.Api\\Announcements.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\dateonlytimeonly.aspnet\\2.1.1\\dateonlytimeonly.aspnet.2.1.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\delegatedecompiler\\0.32.0\\delegatedecompiler.0.32.0.nupkg.sha512",

@@ -1499,11 +1499,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\Announcements.EF.csproj",
+      "projectUniqueName": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\Announcements.EF.csproj",
       "projectName": "Announcements.EF",
-      "projectPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\Announcements.EF.csproj",
+      "projectPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\Announcements.EF.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\obj\\",
+      "outputPath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"

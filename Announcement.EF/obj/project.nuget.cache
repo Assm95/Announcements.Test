@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kJtsS4qBY3uNjloOvThp9xvCVJOva9YNfn71VHlV/dbSKO1R+P3FxMveEX4BrH+VjrItnHc22WjZUOeab1qnHg==",
+  "dgSpecHash": "0HfF7MJ3FcwtniNeSUI8e/D2y7p5ojW3o4l3L3JTJWlRVGuQICCETryO+fPPD5QGYJUnTDKuM9J/QdTu3J8jbg==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\announcement.test\\Announcement.EF\\Announcements.EF.csproj",
+  "projectFilePath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcement.EF\\Announcements.EF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\delegatedecompiler\\0.32.0\\delegatedecompiler.0.32.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\delegatedecompiler.entityframeworkcore5\\0.32.0\\delegatedecompiler.entityframeworkcore5.0.32.0.nupkg.sha512",
