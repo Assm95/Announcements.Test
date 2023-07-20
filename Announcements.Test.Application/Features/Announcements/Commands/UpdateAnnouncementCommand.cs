@@ -5,7 +5,6 @@ using Announcements.Test.Shared;
 using MediatR;
 using Announcements.Test.Application.Common.Exceptions;
 using Announcements.Test.Application.DTO;
-using ApplicationException = Announcements.Test.Application.Common.Exceptions.ApplicationException;
 using File = Announcements.Test.Domain.Common.ValueObjects.File;
 
 namespace Announcements.Test.Application.Features.Announcements.Commands
@@ -43,35 +42,44 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
         }
         public async Task<Result<Guid>> Handle(UpdateAnnouncementCommand request, CancellationToken cancellationToken)
         {
-            User? user =  await _usersUnitOfWork.Repository<User>().GetByIdAsync(request.UserId, cancellationToken);
-
-            if(user == null)
-                throw new NotFoundException("User not found");
-
-            Announcement? announcement = await _announcementsUnitOfWork.Repository<Announcement>().GetByIdAsync(request.Id, cancellationToken);
-
-            if (announcement == null)
-                throw new NotFoundException("Announcement not found");
-
-            FileDto fileDto = await _fileStorage.GetFileAsync(request.FileName, request.FileData);
-            File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
-
-            if (user.IsAdmin || user.Id == announcement.Id)
+            return await ExceptionWrapper<Result<Guid>>.Catch(async () =>
             {
-                //TODO проверка на уникальность Number
-                announcement.Number = request.Number;
-                announcement.Text = request.Text;
-                announcement.Image = image;
-                announcement.Rating = request.Rating;
-                announcement.ExpirationDate = request.ExpirationDate;
+                User? user = await _usersUnitOfWork.Repository<User>().GetByIdAsync(request.UserId, cancellationToken);
 
-                await _announcementsUnitOfWork.Repository<Announcement>().UpdateAsync(announcement, cancellationToken);
-                await _announcementsUnitOfWork.SaveAsync(cancellationToken);
-            }
-            else
-                throw new ApplicationException("To update or remove announcements can only admin or owner.");
+                if (user == null)
+                    throw new NotFoundException("User not found");
 
-            return await Result<Guid>.SuccessAsync(request.Id, "Announcement was updated");
+                Announcement? announcement = await _announcementsUnitOfWork.Repository<Announcement>()
+                    .GetByIdAsync(request.Id, cancellationToken);
+
+                if (announcement == null)
+                    throw new NotFoundException("Announcement not found");
+
+                FileDto? fileDto = await _fileStorage.GetFileAsync(request.FileName, request.FileData);
+
+                if (fileDto == null)
+                    throw new NotFoundException("Image not found");
+
+                File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
+
+                if (user.IsAdmin || user.Id == announcement.Id)
+                {
+                    //TODO проверка на уникальность Number
+                    announcement.Number = request.Number;
+                    announcement.Text = request.Text;
+                    announcement.Image = image;
+                    announcement.Rating = request.Rating;
+                    announcement.ExpirationDate = request.ExpirationDate;
+
+                    await _announcementsUnitOfWork.Repository<Announcement>()
+                        .UpdateAsync(announcement, cancellationToken);
+                    await _announcementsUnitOfWork.SaveAsync(cancellationToken);
+                }
+                else
+                    throw new BadRequestException("To update or remove announcements can only admin or owner.");
+
+                return await Task.FromResult(new Result<Guid>(request.Id, "Announcement was updated"));
+            });
         }
     }
 }

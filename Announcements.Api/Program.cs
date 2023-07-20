@@ -1,8 +1,8 @@
-using Announcements.EF;
-using Announcements.EF.Services;
+using Announcements.Test.Application.Extensions;
+using Announcements.Test.Infrastructure.Extensions;
+using Announcements.Test.Persistence.Extensions;
 using Announcements.WebApi;
 using Announcements.WebApi.Converters;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,19 +12,15 @@ var configuration = builder.Configuration;
 
 services.Configure<AnnouncementOptions>(configuration.GetSection(AnnouncementOptions.Position));
 
-services.AddDbContext<AnnouncementDbContext>(optionsBuilder =>
-{
-    optionsBuilder.UseNpgsql(configuration.GetConnectionString("DbConnection")!);
-});
+services.AddApplicationLayer();
+services.AddInfrastructureLayer();
+services.AddPersistenceLayer(configuration);
 
-services.AddScoped<IAnnouncementService, AnnouncementService>();
-services.AddScoped<IUserService, UserService>();
-
-services.AddControllers()
-    .AddNewtonsoftJson(opts =>
-    {
-       opts.SerializerSettings.Converters.Add(new DateOnlyJsonConverter());
-    });
+services.AddControllers();
+//    .AddNewtonsoftJson(opts =>
+//    {
+//       opts.SerializerSettings.Converters.Add(new DateOnlyJsonConverter());
+//    });
 
 //services.AddDateOnlyTimeOnlyStringConverters();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -45,7 +41,7 @@ app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 

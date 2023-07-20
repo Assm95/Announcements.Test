@@ -6,5 +6,10 @@
             : base(message)
         {
         }
+
+        public ApplicationException(string message, Exception? innerException) 
+            : base(message, innerException)
+        {
+        }
     }
 }

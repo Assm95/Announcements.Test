@@ -72,8 +72,6 @@ D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\b
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.WebApi.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.WebApi.pdb
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\DateOnlyTimeOnly.AspNet.dll
-D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\DelegateDecompiler.dll
-D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\DelegateDecompiler.EntityFrameworkCore5.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
@@ -95,7 +93,6 @@ D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\b
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Microsoft.OpenApi.dll
-D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Mono.Reflection.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Npgsql.dll
@@ -107,8 +104,6 @@ D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\b
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\System.Text.Json.dll
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.EF.dll
-D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.EF.pdb
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\obj\Debug\net6.0\Announcements.WebApi.csproj.AssemblyReference.cache
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\obj\Debug\net6.0\Announcements.WebApi.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\obj\Debug\net6.0\Announcements.WebApi.AssemblyInfoInputs.cache
@@ -130,3 +125,15 @@ D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\o
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\obj\Debug\net6.0\Announcements.WebApi.pdb
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\obj\Debug\net6.0\Announcements.WebApi.genruntimeconfig.cache
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\obj\Debug\net6.0\ref\Announcements.WebApi.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\MediatR.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\MediatR.Contracts.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Application.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Domain.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Infrastructure.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Persistence.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Shared.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Application.pdb
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Infrastructure.pdb
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Persistence.pdb
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Domain.pdb
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Shared.pdb

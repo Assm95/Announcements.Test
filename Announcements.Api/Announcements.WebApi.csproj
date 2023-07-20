@@ -8,12 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="DateOnlyTimeOnly.AspNet" Version="2.1.1" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Announcement.EF\Announcements.EF.csproj" />
+    <ProjectReference Include="..\Announcements.Test.Application\Announcements.Test.Application.csproj" />
+    <ProjectReference Include="..\Announcements.Test.Infrastructure\Announcements.Test.Infrastructure.csproj" />
+    <ProjectReference Include="..\Announcements.Test.Persistence\Announcements.Test.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

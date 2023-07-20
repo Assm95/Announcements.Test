@@ -1,6 +1,5 @@
-﻿using Announcements.EF.Exceptions;
+﻿using Announcements.Test.Application.Common.Exceptions;
 using Announcements.WebApi.Responses;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,15 +23,11 @@ namespace Announcements.WebApi.Controllers
 
             ApiResponse? result;
 
-            if (exception is DomainNotFoundException)
+            if (exception is NotFoundException)
             {
                 result = new ApiResponse(StatusCodes.Status404NotFound, exception.Message);
             }
-            else if (exception is DomainAccessDeniedException)
-            {
-                result = new ApiResponse(StatusCodes.Status403Forbidden, exception.Message);
-            }
-            else if (exception is DomainException)
+            else if (exception is BadRequestException)
             {
                 result = new ApiBadRequestResponse(exception.Message);
             }

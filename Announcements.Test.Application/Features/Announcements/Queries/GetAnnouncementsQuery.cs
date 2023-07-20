@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Announcements.Test.Application.Common.Exceptions;
 using Announcements.Test.Application.DTO;
 using Announcements.Test.Application.Interfaces.Repositories;
 using Announcements.Test.Domain.Entities;
@@ -16,15 +17,13 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
     {
         #region Sorting
 
-        public string? FieldName { get; set; }
-
-        public string? SortOrder { get; set; }
+        private SortAnnouncementsDto? Sort { get; set; }
 
         #endregion
 
         #region Filtering
 
-        public FilterDto? Filter { get; set; }
+        public FilterAnnouncementsDto? Filter { get; set; }
 
         #endregion
 
@@ -53,29 +52,32 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
 
         public async Task<Result<List<AnnouncementDto>>> Handle(GetAnnouncementsQuery request, CancellationToken cancellationToken)
         {
-            var query = _announcementsUnitOfWork.Repository<Announcement>().Entities;
+            return await ExceptionWrapper<Result<List<AnnouncementDto>>>.Catch(async () =>
+            {
+                var query = _announcementsUnitOfWork.Repository<Announcement>().Entities;
 
-            if (!string.IsNullOrWhiteSpace(request.SearchString))
-                query = SearchBy(query, request.SearchString);
+                if (!string.IsNullOrWhiteSpace(request.SearchString))
+                    query = SearchBy(query, request.SearchString);
 
-            if (request.Filter != null)
-                query = FilterBy(query, request.Filter);
+                if (request.Filter != null)
+                    query = FilterBy(query, request.Filter);
 
-            if (request.Pagination != null)
-                query = GetPagination(query, request.Pagination);
+                if (request.Pagination != null)
+                    query = GetPagination(query, request.Pagination);
 
-            //TODO маппинг в DTO
-            //var announcements = await query
-            //    .DecompileAsync()
-            //    .ToListAsync(cancellationToken);
+                //TODO маппинг в DTO
+                //var announcements = await query
+                //    .DecompileAsync()
+                //    .ToListAsync(cancellationToken);
 
-            List<AnnouncementDto> list = new List<AnnouncementDto>();
+                List<AnnouncementDto> list = new List<AnnouncementDto>();
 
-            return await Result<List<AnnouncementDto>>.SuccessAsync(list);
+                return await Task.FromResult(new Result<List<AnnouncementDto>>(list));
+            });
         }
 
 
-        private static IQueryable<Announcement> FilterBy(IQueryable<Announcement> query, FilterDto filter)
+        private static IQueryable<Announcement> FilterBy(IQueryable<Announcement> query, FilterAnnouncementsDto filter)
         {
             if (filter.CreatedAt != null)
             {

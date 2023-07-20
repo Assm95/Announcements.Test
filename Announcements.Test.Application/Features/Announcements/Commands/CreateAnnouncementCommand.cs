@@ -42,22 +42,28 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
 
         public async Task<Result<Guid>> Handle(CreateAnnouncementCommand request, CancellationToken cancellationToken)
         {
-            User? user = await _usersUnitOfWork.Repository<User>().GetByIdAsync(request.UserId, cancellationToken);
+           return await ExceptionWrapper<Result<Guid>>.Catch(async () =>
+            {
+                User? user = await _usersUnitOfWork.Repository<User>().GetByIdAsync(request.UserId, cancellationToken);
 
-            if (user == null)
-                throw new NotFoundException("User not found");
+                if (user == null)
+                    throw new NotFoundException("User not found");
 
-            FileDto fileDto = await _fileStorage.GetFileAsync(request.FileName, request.FileData);
-            File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
+                FileDto? fileDto = await _fileStorage.GetFileAsync(request.FileName, request.FileData);
 
-            Announcement announcement =
-                new Announcement(user, request.Number, request.Text, image, request.Rating, request.ExpirationDate);
+                if(fileDto == null)
+                    throw new NotFoundException("Image not found");
 
+                File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
 
-            await _announcementsUnitOfWork.Repository<Announcement>().AddAsync(announcement, cancellationToken);
-            await _announcementsUnitOfWork.SaveAsync(cancellationToken);
+                Announcement announcement =
+                    new Announcement(user, request.Number, request.Text, image, request.Rating, request.ExpirationDate);
 
-            return await Result<Guid>.SuccessAsync(announcement.Id, "Announcement was created");
+                await _announcementsUnitOfWork.Repository<Announcement>().AddAsync(announcement, cancellationToken);
+                await _announcementsUnitOfWork.SaveAsync(cancellationToken);
+
+                return await Task.FromResult(new Result<Guid>(announcement.Id, "Announcement was created"));
+            });
         }
     }
 }

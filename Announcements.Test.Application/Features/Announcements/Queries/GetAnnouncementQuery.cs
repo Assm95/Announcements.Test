@@ -23,17 +23,20 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
 
         public async Task<Result<AnnouncementDto>> Handle(GetAnnouncementQuery request, CancellationToken cancellationToken)
         {
-            Announcement? announcement = await _announcementsUnitOfWork.Repository<Announcement>()
-                .GetByIdAsync(request.Id, cancellationToken);
+            return await ExceptionWrapper<Result<AnnouncementDto>>.Catch(async () =>
+            {
+                Announcement? announcement = await _announcementsUnitOfWork.Repository<Announcement>()
+                    .GetByIdAsync(request.Id, cancellationToken);
 
-            if (announcement == null)
-                throw new NotFoundException("Announcement not found");
+                if (announcement == null)
+                    throw new NotFoundException("Announcement not found");
 
-            //TODO маппинг в DTO
+                //TODO маппинг в DTO
 
-            AnnouncementDto announcementDto = new AnnouncementDto();
+                AnnouncementDto announcementDto = new AnnouncementDto();
 
-            return await Result<AnnouncementDto>.SuccessAsync(announcementDto);
+                return await Task.FromResult(new Result<AnnouncementDto>(announcementDto));
+            });
         }
     }
 }
