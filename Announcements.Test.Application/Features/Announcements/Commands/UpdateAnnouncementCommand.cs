@@ -33,12 +33,15 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
         private readonly IUnitOfWork _announcementsUnitOfWork;
         private readonly IUnitOfWork _usersUnitOfWork;
         private readonly IFileStorage _fileStorage;
+        private readonly IAnnouncementsRepository _announcementsRepository;
 
-        public UpdateAnnouncementCommandHandler(IUnitOfWork announcementsUnitOfWork, IUnitOfWork usersUnitOfWork, IFileStorage fileStorage)
+        public UpdateAnnouncementCommandHandler(IUnitOfWork announcementsUnitOfWork, IUnitOfWork usersUnitOfWork,
+            IFileStorage fileStorage, IAnnouncementsRepository announcementsRepository)
         {
             _announcementsUnitOfWork = announcementsUnitOfWork;
             _usersUnitOfWork = usersUnitOfWork;
             _fileStorage = fileStorage;
+            _announcementsRepository = announcementsRepository;
         }
         public async Task<Result<Guid>> Handle(UpdateAnnouncementCommand request, CancellationToken cancellationToken)
         {
@@ -55,6 +58,8 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
                 if (announcement == null)
                     throw new NotFoundException("Announcement not found");
 
+                await CheckUniqueNumberAsync(announcement, request.Number, cancellationToken);
+
                 FileDto? fileDto = await _fileStorage.GetFileAsync(request.Image.FileName, request.Image.FileData);
 
                 if (fileDto == null)
@@ -62,11 +67,9 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
 
                 File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
                 DateTime expirationDate = request.ExpirationDate.ToDateTime(TimeOnly.MinValue);
-
-
+                
                 if (user.IsAdmin || user.Id == announcement.Id)
                 {
-                    //TODO проверка на уникальность Number
                     announcement.Number = request.Number;
                     announcement.Text = request.Text;
                     announcement.Image = image;
@@ -82,6 +85,17 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
 
                 return await Task.FromResult(new Result<Guid>(request.Id, "Announcement was updated"));
             });
+        }
+
+        private async Task CheckUniqueNumberAsync(Announcement announcement, int newNumber, CancellationToken cancellationToken)
+        {
+            if (announcement.Number != newNumber)
+            {
+                bool numberExist = await _announcementsRepository.FindByNumberAsync(newNumber, cancellationToken) != null;
+
+                if (numberExist)
+                    throw new BadRequestException("The announcement number must be unique.");
+            }
         }
     }
 }

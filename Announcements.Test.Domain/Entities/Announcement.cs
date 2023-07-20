@@ -15,7 +15,7 @@ namespace Announcements.Test.Domain.Entities
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new DomainException(ErrorsSource.FieldIsRequired(nameof(Text)));
+                    throw new DomainException($"The field {nameof(Text)} is required.");
 
                 _text = value;
             }
@@ -34,7 +34,7 @@ namespace Announcements.Test.Domain.Entities
             set
             {
                 if (value <= CreatedAt)
-                    throw new DomainException(ErrorsSource.ExpirationDateInvalid);
+                    throw new DomainException("The expiration date must be greater than  the creation date.");
 
                 _expirationDate = value;
             }

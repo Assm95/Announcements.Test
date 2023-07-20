@@ -1,6 +1,5 @@
 ﻿using Announcements.Test.Domain.Common;
 using Announcements.Test.Domain.Common.Exceptions;
-using Announcements.Test.Domain.Resources;
 
 namespace Announcements.Test.Domain.Entities
 {
@@ -12,7 +11,7 @@ namespace Announcements.Test.Domain.Entities
             set
             {
                 if (string.IsNullOrEmpty(value))
-                    throw new DomainException(ErrorsSource.FieldIsRequired(nameof(Name)));
+                    throw new DomainException($"The field {nameof(Name)} is required.");
 
                 _name = value;
             }

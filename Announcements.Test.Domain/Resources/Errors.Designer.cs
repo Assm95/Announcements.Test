@@ -61,42 +61,6 @@ namespace Announcements.Test.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The announcement already exist..
-        /// </summary>
-        internal static string Announcement_Exist {
-            get {
-                return ResourceManager.GetString("Announcement_Exist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The announcement number must be unique..
-        /// </summary>
-        internal static string AnnouncementNumber_Unique {
-            get {
-                return ResourceManager.GetString("AnnouncementNumber_Unique", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to To update or remove announcements can only admin or owner..
-        /// </summary>
-        internal static string AnnouncementOwner_Invalid {
-            get {
-                return ResourceManager.GetString("AnnouncementOwner_Invalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date time has invalid format: {0}. Format must be {1}..
-        /// </summary>
-        internal static string DateTime_InvalidFormat {
-            get {
-                return ResourceManager.GetString("DateTime_InvalidFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The expiration date must be greater than  the creation date..
         /// </summary>
         internal static string ExpirationDate_Invalid {
@@ -106,7 +70,7 @@ namespace Announcements.Test.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Еру field {0} is required..
+        ///   Looks up a localized string similar to The field {0} is required..
         /// </summary>
         internal static string Field_IsRequired {
             get {

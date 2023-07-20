@@ -1,20 +1,18 @@
 ﻿using Announcements.Test.Application.Interfaces;
-using Announcements.Test.Infrastructure.Options;
 using Announcements.Test.Infrastructure.Services;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Announcements.Test.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtension
     {
-        public static void AddInfrastructureLayer(this IServiceCollection services, IConfiguration configuration)
+        public static void AddInfrastructureLayer(this IServiceCollection services)
         {
-            services.AddServices(configuration);
+            services.AddServices();
         }
 
-        private static void AddServices(this IServiceCollection services, IConfiguration configuration)
+        private static void AddServices(this IServiceCollection services)
         {
             services.AddTransient<IMediator, Mediator>()
                 .AddTransient<IFileStorage, LocalFileStorage>();

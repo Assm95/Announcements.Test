@@ -13,13 +13,10 @@ namespace Announcements.WebApi.Controllers
     public class AnnouncementController : ApiBaseController
     {
         private readonly IMediator _mediator;
-        private readonly AnnouncementOptions _announcementOptions;
 
-        public AnnouncementController(IMediator mediator, IOptions<AnnouncementOptions> announcementOptions)
+        public AnnouncementController(IMediator mediator)
         {
             _mediator = mediator;
-
-            _announcementOptions = announcementOptions.Value;
         }
 
         [HttpGet]

@@ -1,5 +1,4 @@
 ﻿using Announcements.Test.Domain.Common.Exceptions;
-using Announcements.Test.Shared;
 
 namespace Announcements.Test.Application.Common.Exceptions
 {
@@ -9,9 +8,13 @@ namespace Announcements.Test.Application.Common.Exceptions
         {
             try
             {
-                 return await func.Invoke();
+                return await func.Invoke();
             }
-            catch (NotFoundException e)
+            catch (BadRequestException)
+            {
+                throw;
+            }
+            catch (NotFoundException)
             {
                 throw;
             }

@@ -1,4 +1,4 @@
-﻿namespace Announcements.WebApi
+﻿namespace Announcements.Test.Application.Options
 {
     public class AnnouncementOptions
     {

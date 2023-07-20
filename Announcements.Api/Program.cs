@@ -1,10 +1,9 @@
 using Announcements.Test.Application.Extensions;
+using Announcements.Test.Application.Options;
 using Announcements.Test.Infrastructure.Extensions;
 using Announcements.Test.Infrastructure.Options;
 using Announcements.Test.Persistence.Extensions;
-using Announcements.WebApi;
-using Announcements.WebApi.Converters;
-using Newtonsoft.Json.Converters;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -15,16 +14,11 @@ services.Configure<AnnouncementOptions>(configuration.GetSection(AnnouncementOpt
 services.Configure<LocalFileStorageOptions>(configuration.GetSection(LocalFileStorageOptions.Position));
 
 services.AddApplicationLayer();
-services.AddInfrastructureLayer(configuration);
+services.AddInfrastructureLayer();
 services.AddPersistenceLayer(configuration);
 
 services.AddControllers();
-//    .AddNewtonsoftJson(opts =>
-//    {
-//       opts.SerializerSettings.Converters.Add(new DateOnlyJsonConverter());
-//    });
 
-//services.AddDateOnlyTimeOnlyStringConverters();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
