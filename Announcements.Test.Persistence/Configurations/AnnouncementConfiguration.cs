@@ -36,6 +36,10 @@ namespace Announcements.Test.Persistence.Configurations
 
             builder.HasIndex(x => x.Number)
                 .IsUnique();
+
+            builder.HasIndex(x => x.CreatedAt);
+            builder.HasIndex(x => x.ExpirationDate);
+            builder.HasIndex(x => x.Rating);
         }
     }
 }
