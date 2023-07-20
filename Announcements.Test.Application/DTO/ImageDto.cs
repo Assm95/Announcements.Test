@@ -4,6 +4,6 @@
     {
         public string FileName { get; set; } = string.Empty;
 
-        public byte[] FileData { get; set; } = Array.Empty<byte>();
+        public byte[]? FileData { get; set; }
     }
 }

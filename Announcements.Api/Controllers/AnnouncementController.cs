@@ -23,14 +23,16 @@ namespace Announcements.WebApi.Controllers
         [ProducesResponseType(typeof(ApiOkResponse<List<AnnouncementDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAnnouncementsAsync([FromQuery] FilterAnnouncementsDto? filter,
             [FromQuery] PaginationDto? pagination, [FromQuery] SortAnnouncementsDto? sort, string? searchString,
-            bool includeImage = false, CancellationToken cancellationToken = default)
+            bool includeImageData = false, CancellationToken cancellationToken = default)
         {
 
             var query = new GetAnnouncementsQuery
             {
                 SearchString = searchString,
                 Pagination = pagination,
-                Filter = filter
+                Filter = filter,
+                Sort = sort,
+                IncludeImageData = includeImageData
             };
 
             var result = await _mediator.Send(query, cancellationToken);
@@ -47,7 +49,7 @@ namespace Announcements.WebApi.Controllers
             var result = await _mediator.Send(new GetAnnouncementQuery
             {
                 Id = id
-            });
+            }, cancellationToken);
 
             return ApiOk(result.Data);
         }

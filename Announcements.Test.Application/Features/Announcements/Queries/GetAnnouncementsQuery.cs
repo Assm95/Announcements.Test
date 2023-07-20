@@ -43,6 +43,8 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
         public PaginationDto? Pagination { get; set; }
 
         #endregion
+
+        public bool IncludeImageData { get; set; }
     }
 
     internal class GetAnnouncementsQueryHandler : IRequestHandler<GetAnnouncementsQuery, Result<List<AnnouncementDto>>>
@@ -82,12 +84,15 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
 
                 List<AnnouncementDto> listAnnouncementsDto = _mapper.Map<List<AnnouncementDto>>(announcementsList);
 
-                foreach (var dto in listAnnouncementsDto)
+                if (request.IncludeImageData)
                 {
-                    dto.Image.FileData = await _fileStorage.GetFileDataAsync(dto.Image.FileName) ??
-                                                     throw new NotFoundException("File not found");
+                    foreach (var dto in listAnnouncementsDto)
+                    {
+                        dto.Image.FileData = await _fileStorage.GetFileDataAsync(dto.Image.FileName) ??
+                                             throw new NotFoundException("File not found");
+                    }
                 }
-
+                
                 return await Task.FromResult(new Result<List<AnnouncementDto>>(listAnnouncementsDto));
             });
         }
@@ -98,13 +103,23 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
             if (filter.CreatedAt != null)
             {
                 var createdAt = filter.CreatedAt;
-                query = query.Where(x => x.CreatedAt >= createdAt.Start && x.CreatedAt < createdAt.End.AddDays(1));
+
+                if (createdAt.Start.HasValue)
+                    query = query.Where(x => x.CreatedAt >= createdAt.Start);
+
+                if(createdAt.End.HasValue)
+                    query = query.Where(x => x.CreatedAt < createdAt.End.Value.AddDays(1));
             }
 
             if (filter.ExpirationDate != null)
             {
                 var expirationDate = filter.ExpirationDate;
-                query = query.Where(x => x.CreatedAt >= expirationDate.Start && x.CreatedAt < expirationDate.End.AddDays(1));
+
+                if (expirationDate.Start.HasValue)
+                    query = query.Where(x => x.ExpirationDate >= expirationDate.Start);
+
+                if (expirationDate.End.HasValue)
+                    query = query.Where(x => x.ExpirationDate < expirationDate.End.Value.AddDays(1));
             }
 
             if (filter.Number.HasValue)
