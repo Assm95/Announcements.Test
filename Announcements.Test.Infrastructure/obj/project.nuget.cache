@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "2hlpCLDWBdbgPz1imhGsznSb8WchU2iTk6E8L7WCVqYs2/4wFzER/6tm0MnVQoFsOGKfqzcGFwzLSIStr7oV7A==",
+  "dgSpecHash": "ay1spPk+oQhN+BCxd42eFP//fTobdf3LM3H+Xm/I3WkZKMv1qyx/Mnu4qA1dvrKbfl83UbXUZZO5+9Istz8mpw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\CSharp\\Test\\Announcement.Test\\Announcements.Test\\Announcements.Test.Infrastructure\\Announcements.Test.Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
