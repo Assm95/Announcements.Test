@@ -17,13 +17,11 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
         
         public string Text { get; set; } = string.Empty;
 
-        public DateTime ExpirationDate { get; set; }
+        public DateOnly ExpirationDate { get; set; }
 
         public int Rating { get; set; }
 
-        public string FileName { get; set; } = string.Empty;
-
-        public byte[] FileData { get; set; } = Array.Empty<byte>();
+        public ImageDto Image { get; set; } = null!;
     }
 
     internal class CreateAnnouncementCommandHandler : IRequestHandler<CreateAnnouncementCommand, Result<Guid>>
@@ -42,22 +40,24 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
 
         public async Task<Result<Guid>> Handle(CreateAnnouncementCommand request, CancellationToken cancellationToken)
         {
-           return await ExceptionWrapper<Result<Guid>>.Catch(async () =>
+            return await ExceptionWrapper<Result<Guid>>.Catch(async () =>
             {
                 User? user = await _usersUnitOfWork.Repository<User>().GetByIdAsync(request.UserId, cancellationToken);
 
                 if (user == null)
                     throw new NotFoundException("User not found");
 
-                FileDto? fileDto = await _fileStorage.GetFileAsync(request.FileName, request.FileData);
+                FileDto? fileDto = await _fileStorage.GetFileAsync(request.Image.FileName, request.Image.FileData);
 
-                if(fileDto == null)
+                if (fileDto == null)
                     throw new NotFoundException("Image not found");
 
                 File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
 
+                DateTime expirationDate = request.ExpirationDate.ToDateTime(TimeOnly.MinValue);
+
                 Announcement announcement =
-                    new Announcement(user, request.Number, request.Text, image, request.Rating, request.ExpirationDate);
+                    new Announcement(user, request.Number, request.Text, image, request.Rating, expirationDate);
 
                 await _announcementsUnitOfWork.Repository<Announcement>().AddAsync(announcement, cancellationToken);
                 await _announcementsUnitOfWork.SaveAsync(cancellationToken);

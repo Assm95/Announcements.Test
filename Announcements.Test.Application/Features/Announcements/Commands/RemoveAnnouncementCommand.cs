@@ -1,4 +1,5 @@
-﻿using Announcements.Test.Application.Common.Exceptions;
+﻿using System.Text.Json.Serialization;
+using Announcements.Test.Application.Common.Exceptions;
 using Announcements.Test.Application.Interfaces.Repositories;
 using Announcements.Test.Domain.Entities;
 using Announcements.Test.Shared;
@@ -10,6 +11,7 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
 {
     public class RemoveAnnouncementCommand : IRequest<Result<Guid>>
     {
+        [JsonIgnore]
         public Guid Id { get; set; }
 
         public Guid UserId { get; set; }

@@ -21,6 +21,52 @@
           "Announcements.Test.Persistence.dll": {}
         }
       },
+      "AutoMapper/12.0.1": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.0"
+          }
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "Microsoft.Extensions.Options": "7.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.0"
+          }
+        }
+      },
+      "DelegateDecompiler/0.32.0": {
+        "dependencies": {
+          "Mono.Reflection": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DelegateDecompiler.dll": {
+            "assemblyVersion": "0.32.0.0",
+            "fileVersion": "0.32.0.0"
+          }
+        }
+      },
+      "DelegateDecompiler.EntityFrameworkCore5/0.32.0": {
+        "dependencies": {
+          "DelegateDecompiler": "0.32.0",
+          "Microsoft.EntityFrameworkCore": "7.0.9"
+        },
+        "runtime": {
+          "lib/netstandard2.1/DelegateDecompiler.EntityFrameworkCore5.dll": {
+            "assemblyVersion": "0.32.0.0",
+            "fileVersion": "0.32.0.0"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
@@ -49,6 +95,7 @@
           }
         }
       },
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.EntityFrameworkCore/7.0.9": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "7.0.9",
@@ -291,6 +338,14 @@
           }
         }
       },
+      "Mono.Reflection/2.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/Mono.Reflection.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
       "Mono.TextTemplating/2.2.1": {
         "dependencies": {
           "System.CodeDom": "4.4.0"
@@ -372,6 +427,10 @@
         "dependencies": {
           "Announcements.Test.Domain": "1.0.0",
           "Announcements.Test.Shared": "1.0.0",
+          "AutoMapper": "12.0.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "DelegateDecompiler": "0.32.0",
+          "DelegateDecompiler.EntityFrameworkCore5": "0.32.0",
           "MediatR": "12.1.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
         },
@@ -397,6 +456,34 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AutoMapper/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "path": "automapper/12.0.1",
+      "hashPath": "automapper.12.0.1.nupkg.sha512"
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+g/K+Vpe3gGMKGzjslMOdqNlkikScDjWfVvmWTayrDHaG/n2pPmFBMa+jKX1r/h6BDGFdkyRjAuhFE3ykW+r1g==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/12.0.1",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512"
+    },
+    "DelegateDecompiler/0.32.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JrC2Pm/VjFT1EJ1gcHNR6zhZz7Lmnc9XT/6T+D2/ZrOHh14BZLkp27TzCfJUlDcpD5x9fV7uGhEuE6p7TOqdtQ==",
+      "path": "delegatedecompiler/0.32.0",
+      "hashPath": "delegatedecompiler.0.32.0.nupkg.sha512"
+    },
+    "DelegateDecompiler.EntityFrameworkCore5/0.32.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kMAotrNaqZrZcWsxgoYbVPaJ3QYrAI6h6WDAhKBdBT3YH2+7prritghAJTQBuB7Q1/xL6t90SiUty1IMwhMUeg==",
+      "path": "delegatedecompiler.entityframeworkcore5/0.32.0",
+      "hashPath": "delegatedecompiler.entityframeworkcore5.0.32.0.nupkg.sha512"
+    },
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -417,6 +504,13 @@
       "sha512": "sha512-FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ==",
       "path": "mediatr.contracts/2.0.1",
       "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/7.0.9": {
       "type": "package",
@@ -571,6 +665,13 @@
       "sha512": "sha512-um1KU5kxcRp3CNuI8o/GrZtD4AIOXDk+RLsytjZ9QPok3ttLUelLKpilVPuaFT3TFjOhSibUAso0odbOaCDj3Q==",
       "path": "microsoft.extensions.primitives/7.0.0",
       "hashPath": "microsoft.extensions.primitives.7.0.0.nupkg.sha512"
+    },
+    "Mono.Reflection/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gipqt3dO1NsgM9wfUsQeNVLYmSskDfaN+muNQHLJYkCuYxx2bIp6gAA8j2Rp+Ey6YNHloZv+BJY56r9fl3tfew==",
+      "path": "mono.reflection/2.0.0",
+      "hashPath": "mono.reflection.2.0.0.nupkg.sha512"
     },
     "Mono.TextTemplating/2.2.1": {
       "type": "package",

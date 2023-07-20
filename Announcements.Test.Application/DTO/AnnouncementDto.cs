@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Announcements.Test.Application.DTO
+﻿namespace Announcements.Test.Application.DTO
 {
     public class AnnouncementDto
     {
@@ -16,12 +10,12 @@ namespace Announcements.Test.Application.DTO
 
         public string Text { get; set; } = null!;
 
-        public FileDto? Image { get; set; }
+        public ImageDto Image { get; set; } = null!;
 
         public int Rating { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
-        public DateOnly ExpirationDate { get; set; }
+        public DateTime ExpirationDate { get; set; }
     }
 }

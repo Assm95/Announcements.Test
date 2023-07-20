@@ -28,5 +28,15 @@ namespace Announcements.Test.Infrastructure.Services
                 Extension = Path.GetExtension(name).TrimStart('.')
             };
         }
+
+        public async Task<byte[]?> GetFileDataAsync(string name)
+        {
+            string fileName = Path.Combine(_options.Path, name);
+            
+            if (!File.Exists(fileName))
+                return null;
+
+            return await File.ReadAllBytesAsync(fileName);
+        }
     }
 }

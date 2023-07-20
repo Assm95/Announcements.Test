@@ -1,5 +1,6 @@
 using Announcements.Test.Application.Extensions;
 using Announcements.Test.Infrastructure.Extensions;
+using Announcements.Test.Infrastructure.Options;
 using Announcements.Test.Persistence.Extensions;
 using Announcements.WebApi;
 using Announcements.WebApi.Converters;
@@ -11,9 +12,10 @@ var configuration = builder.Configuration;
 // Add services to the container.
 
 services.Configure<AnnouncementOptions>(configuration.GetSection(AnnouncementOptions.Position));
+services.Configure<LocalFileStorageOptions>(configuration.GetSection(LocalFileStorageOptions.Position));
 
 services.AddApplicationLayer();
-services.AddInfrastructureLayer();
+services.AddInfrastructureLayer(configuration);
 services.AddPersistenceLayer(configuration);
 
 services.AddControllers();

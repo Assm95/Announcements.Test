@@ -2,6 +2,35 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "AutoMapper/12.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper": "[12.0.1]",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "DateOnlyTimeOnly.AspNet/2.1.1": {
         "type": "package",
         "compile": {
@@ -13,6 +42,31 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "DelegateDecompiler/0.32.0": {
+        "type": "package",
+        "dependencies": {
+          "Mono.Reflection": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DelegateDecompiler.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DelegateDecompiler.dll": {}
+        }
+      },
+      "DelegateDecompiler.EntityFrameworkCore5/0.32.0": {
+        "type": "package",
+        "dependencies": {
+          "DelegateDecompiler": "0.32.0",
+          "Microsoft.EntityFrameworkCore": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/DelegateDecompiler.EntityFrameworkCore5.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/DelegateDecompiler.EntityFrameworkCore5.dll": {}
+        }
       },
       "MediatR/12.1.1": {
         "type": "package",
@@ -472,6 +526,19 @@
           }
         }
       },
+      "Mono.Reflection/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Mono.Reflection.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Mono.Reflection.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -684,6 +751,10 @@
         "dependencies": {
           "Announcements.Test.Domain": "1.0.0",
           "Announcements.Test.Shared": "1.0.0",
+          "AutoMapper": "12.0.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "DelegateDecompiler": "0.32.0",
+          "DelegateDecompiler.EntityFrameworkCore5": "0.32.0",
           "MediatR": "12.1.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
         },
@@ -709,7 +780,8 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Announcements.Test.Application": "1.0.0",
-          "Microsoft.Extensions.Options": "7.0.0"
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
         },
         "compile": {
           "bin/placeholder/Announcements.Test.Infrastructure.dll": {}
@@ -750,6 +822,35 @@
     }
   },
   "libraries": {
+    "AutoMapper/12.0.1": {
+      "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "type": "package",
+      "path": "automapper/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.12.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.dll",
+        "lib/netstandard2.1/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/12.0.1": {
+      "sha512": "+g/K+Vpe3gGMKGzjslMOdqNlkikScDjWfVvmWTayrDHaG/n2pPmFBMa+jKX1r/h6BDGFdkyRjAuhFE3ykW+r1g==",
+      "type": "package",
+      "path": "automapper.extensions.microsoft.dependencyinjection/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+        "automapper.extensions.microsoft.dependencyinjection.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
     "DateOnlyTimeOnly.AspNet/2.1.1": {
       "sha512": "7HlGV6sm0efRMquxnZaoqV3KybUMOs1IaJ4TaX85v7IZF01h1YV6Zscos9g4qQfrGYfvqLjbpe3Q54cmMBeISQ==",
       "type": "package",
@@ -762,6 +863,34 @@
         "dateonlytimeonly.aspnet.nuspec",
         "lib/net6.0/DateOnlyTimeOnly.AspNet.dll",
         "lib/net7.0/DateOnlyTimeOnly.AspNet.dll"
+      ]
+    },
+    "DelegateDecompiler/0.32.0": {
+      "sha512": "JrC2Pm/VjFT1EJ1gcHNR6zhZz7Lmnc9XT/6T+D2/ZrOHh14BZLkp27TzCfJUlDcpD5x9fV7uGhEuE6p7TOqdtQ==",
+      "type": "package",
+      "path": "delegatedecompiler/0.32.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "delegatedecompiler.0.32.0.nupkg.sha512",
+        "delegatedecompiler.nuspec",
+        "lib/net40/DelegateDecompiler.dll",
+        "lib/net45/DelegateDecompiler.dll",
+        "lib/netstandard2.0/DelegateDecompiler.dll"
+      ]
+    },
+    "DelegateDecompiler.EntityFrameworkCore5/0.32.0": {
+      "sha512": "kMAotrNaqZrZcWsxgoYbVPaJ3QYrAI6h6WDAhKBdBT3YH2+7prritghAJTQBuB7Q1/xL6t90SiUty1IMwhMUeg==",
+      "type": "package",
+      "path": "delegatedecompiler.entityframeworkcore5/0.32.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "delegatedecompiler.entityframeworkcore5.0.32.0.nupkg.sha512",
+        "delegatedecompiler.entityframeworkcore5.nuspec",
+        "lib/netstandard2.1/DelegateDecompiler.EntityFrameworkCore5.dll"
       ]
     },
     "MediatR/12.1.1": {
@@ -1454,6 +1583,21 @@
         "lib/netstandard2.0/Microsoft.OpenApi.xml",
         "microsoft.openapi.1.2.3.nupkg.sha512",
         "microsoft.openapi.nuspec"
+      ]
+    },
+    "Mono.Reflection/2.0.0": {
+      "sha512": "gipqt3dO1NsgM9wfUsQeNVLYmSskDfaN+muNQHLJYkCuYxx2bIp6gAA8j2Rp+Ey6YNHloZv+BJY56r9fl3tfew==",
+      "type": "package",
+      "path": "mono.reflection/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/Mono.Reflection.dll",
+        "lib/net40/Mono.Reflection.pdb",
+        "lib/netstandard2.0/Mono.Reflection.dll",
+        "lib/netstandard2.0/Mono.Reflection.pdb",
+        "mono.reflection.2.0.0.nupkg.sha512",
+        "mono.reflection.nuspec"
       ]
     },
     "Newtonsoft.Json/13.0.1": {

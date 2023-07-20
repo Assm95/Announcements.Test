@@ -1,9 +1,12 @@
 ﻿using Announcements.Test.Application.Common.Exceptions;
 using Announcements.Test.Application.DTO;
+using Announcements.Test.Application.Interfaces;
 using Announcements.Test.Application.Interfaces.Repositories;
 using Announcements.Test.Domain.Entities;
 using Announcements.Test.Shared;
+using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Announcements.Test.Application.Features.Announcements.Queries
 {
@@ -15,25 +18,31 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
     internal class GetAnnouncementQueryHandler : IRequestHandler<GetAnnouncementQuery, Result<AnnouncementDto>>
     {
         private readonly IUnitOfWork _announcementsUnitOfWork;
+        private readonly IMapper _mapper;
+        private readonly IFileStorage _fileStorage;
 
-        public GetAnnouncementQueryHandler(IUnitOfWork announcementsUnitOfWork)
+        public GetAnnouncementQueryHandler(IUnitOfWork announcementsUnitOfWork, IMapper mapper, IFileStorage fileStorage)
         {
             _announcementsUnitOfWork = announcementsUnitOfWork;
+            _mapper = mapper;
+            _fileStorage = fileStorage;
         }
 
         public async Task<Result<AnnouncementDto>> Handle(GetAnnouncementQuery request, CancellationToken cancellationToken)
         {
             return await ExceptionWrapper<Result<AnnouncementDto>>.Catch(async () =>
             {
-                Announcement? announcement = await _announcementsUnitOfWork.Repository<Announcement>()
-                    .GetByIdAsync(request.Id, cancellationToken);
+                var query = _announcementsUnitOfWork.Repository<Announcement>().Entities;
+                query = query.Include(x => x.User);
+
+                Announcement ? announcement = await query.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
                 if (announcement == null)
                     throw new NotFoundException("Announcement not found");
 
-                //TODO маппинг в DTO
-
-                AnnouncementDto announcementDto = new AnnouncementDto();
+                AnnouncementDto announcementDto = _mapper.Map<AnnouncementDto>(announcement);
+                announcementDto.Image.FileData = await _fileStorage.GetFileDataAsync(announcementDto.Image.FileName) ??
+                                                 throw new NotFoundException("File not found");
 
                 return await Task.FromResult(new Result<AnnouncementDto>(announcementDto));
             });

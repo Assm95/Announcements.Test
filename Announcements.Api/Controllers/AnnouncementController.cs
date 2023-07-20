@@ -73,6 +73,7 @@ namespace Announcements.WebApi.Controllers
         public async Task<IActionResult> UpdateAnnouncementAsync(Guid id, [FromBody] UpdateAnnouncementCommand command,
             CancellationToken cancellationToken)
         {
+            command.Id = id;
             await _mediator.Send(command, cancellationToken);
 
             return NoContent();
@@ -85,6 +86,8 @@ namespace Announcements.WebApi.Controllers
         public async Task<IActionResult> RemoveAnnouncementAsync(Guid id, [FromBody] RemoveAnnouncementCommand command,
             CancellationToken cancellationToken)
         {
+            command.Id = id;
+
             await _mediator.Send(command, cancellationToken);
 
             return NoContent();

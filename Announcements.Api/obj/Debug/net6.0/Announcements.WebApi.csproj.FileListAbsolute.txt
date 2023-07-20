@@ -137,3 +137,8 @@ D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\b
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Persistence.pdb
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Domain.pdb
 D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Announcements.Test.Shared.pdb
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\AutoMapper.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\DelegateDecompiler.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\DelegateDecompiler.EntityFrameworkCore5.dll
+D:\Projects\CSharp\Test\Announcement.Test\Announcements.Test\Announcements.Api\bin\Debug\net6.0\Mono.Reflection.dll
