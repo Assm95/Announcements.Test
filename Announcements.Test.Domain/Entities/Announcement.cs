@@ -1,6 +1,5 @@
 ﻿using Announcements.Test.Domain.Common;
 using Announcements.Test.Domain.Common.Exceptions;
-using Announcements.Test.Domain.Resources;
 using File = Announcements.Test.Domain.Common.ValueObjects.File;
 
 namespace Announcements.Test.Domain.Entities
