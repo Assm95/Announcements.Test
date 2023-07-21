@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
 
-namespace Announcements.WebApi.Responses
+namespace Announcements.Test.WebApi.Responses
 {
     public class ApiResponse
     {

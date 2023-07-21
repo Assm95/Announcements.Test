@@ -1,9 +1,9 @@
 ﻿using Announcements.Test.Application.Common.Exceptions;
-using Announcements.WebApi.Responses;
+using Announcements.Test.WebApi.Responses;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Announcements.WebApi.Controllers
+namespace Announcements.Test.WebApi.Controllers
 {
     [ApiExplorerSettings(IgnoreApi = true)]
     public class ErrorController : Controller

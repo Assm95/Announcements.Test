@@ -1,12 +1,11 @@
 ﻿using Announcements.Test.Application.DTO;
 using Announcements.Test.Application.Features.Announcements.Commands;
 using Announcements.Test.Application.Features.Announcements.Queries;
-using Announcements.WebApi.Responses;
+using Announcements.Test.WebApi.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
-namespace Announcements.WebApi.Controllers
+namespace Announcements.Test.WebApi.Controllers
 {
     [ApiController]
     [Route("~/api/announcements")]

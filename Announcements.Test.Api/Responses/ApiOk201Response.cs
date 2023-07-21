@@ -1,4 +1,4 @@
-﻿namespace Announcements.WebApi.Responses
+﻿namespace Announcements.Test.WebApi.Responses
 {
     public class ApiOk201Response<T> : ApiResponse
     {

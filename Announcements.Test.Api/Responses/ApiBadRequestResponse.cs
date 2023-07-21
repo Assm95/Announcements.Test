@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Announcements.WebApi.Responses
+namespace Announcements.Test.WebApi.Responses
 {
     public class ApiBadRequestResponse : ApiResponse
     {

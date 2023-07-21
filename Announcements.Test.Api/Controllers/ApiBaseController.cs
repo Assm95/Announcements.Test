@@ -1,7 +1,7 @@
-﻿using Announcements.WebApi.Responses;
+﻿using Announcements.Test.WebApi.Responses;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Announcements.WebApi.Controllers
+namespace Announcements.Test.WebApi.Controllers
 {
     public class ApiBaseController : Controller
     {
