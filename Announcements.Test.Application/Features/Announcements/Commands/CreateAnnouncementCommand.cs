@@ -45,36 +45,36 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
 
         public async Task<Result<Guid>> Handle(CreateAnnouncementCommand request, CancellationToken cancellationToken)
         {
-            return await ExceptionWrapper<Result<Guid>>.Catch(async () =>
-            {
-                var query = _usersUnitOfWork.Repository<User>().Entities;
-                query = query.Include(x => x.Announcements);
+            var query = _usersUnitOfWork.Repository<User>().Entities;
+            query = query.Include(x => x.Announcements);
 
-                User ? user = await query.FirstOrDefaultAsync(x => x.Id == request.UserId, cancellationToken);
+            User ? user = await query.FirstOrDefaultAsync(x => x.Id == request.UserId, cancellationToken);
 
-                if (user == null)
-                    throw new NotFoundException("User not found");
+            if (user == null)
+                throw new NotFoundException("User not found");
 
-                if (user.Announcements.Count >= _announcementOptions.UserLimit)
-                    throw new BadRequestException($"User can't create more then {_announcementOptions.UserLimit} announcements.");
+            if (user.Announcements.Count >= _announcementOptions.UserLimit)
+                throw new BadRequestException($"User can't create more then {_announcementOptions.UserLimit} announcements.");
 
-                FileDto? fileDto = await _fileStorage.GetFileAsync(request.Image.FileName, request.Image.FileData);
+            if(request.Image.FileData == null)
+                throw new BadRequestException($"File can't be empty");
 
-                if (fileDto == null)
-                    throw new NotFoundException("Image not found");
+            FileDto? fileDto = await _fileStorage.GetFileAsync(request.Image.FileName, request.Image.FileData);
 
-                File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
+            if (fileDto == null)
+                throw new NotFoundException("Image not found");
 
-                DateTime expirationDate = request.ExpirationDate.ToDateTime(TimeOnly.MinValue);
+            File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
 
-                Announcement announcement =
-                    new Announcement(user, request.Number, request.Text, image, request.Rating, expirationDate);
+            DateTime expirationDate = request.ExpirationDate.ToDateTime(TimeOnly.MinValue);
 
-                await _announcementsUnitOfWork.Repository<Announcement>().AddAsync(announcement, cancellationToken);
-                await _announcementsUnitOfWork.SaveAsync(cancellationToken);
+            Announcement announcement =
+                new Announcement(user, request.Number, request.Text, image, request.Rating, expirationDate);
 
-                return await Task.FromResult(new Result<Guid>(announcement.Id, "Announcement was created"));
-            });
+            await _announcementsUnitOfWork.Repository<Announcement>().AddAsync(announcement, cancellationToken);
+            await _announcementsUnitOfWork.SaveAsync(cancellationToken);
+
+            return await Task.FromResult(new Result<Guid>(announcement.Id, "Announcement was created"));
         }
     }
 }

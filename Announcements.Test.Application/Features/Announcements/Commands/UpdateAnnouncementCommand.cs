@@ -45,46 +45,44 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
         }
         public async Task<Result<Guid>> Handle(UpdateAnnouncementCommand request, CancellationToken cancellationToken)
         {
-            return await ExceptionWrapper<Result<Guid>>.Catch(async () =>
+            User? user = await _usersUnitOfWork.Repository<User>().GetByIdAsync(request.UserId, cancellationToken);
+
+            if (user == null)
+                throw new NotFoundException("User not found");
+
+            Announcement? announcement = await _announcementsUnitOfWork.Repository<Announcement>()
+                .GetByIdAsync(request.Id, cancellationToken);
+
+            if (announcement == null)
+                throw new NotFoundException("Announcement not found");
+
+            await CheckUniqueNumberAsync(announcement, request.Number, cancellationToken);
+
+            FileDto? fileDto = await _fileStorage.GetFileAsync(request.Image.FileName, request.Image.FileData);
+
+            if (fileDto == null)
+                throw new NotFoundException("Image not found");
+
+            File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
+            DateTime expirationDate = request.ExpirationDate.ToDateTime(TimeOnly.MinValue);
+            
+            if (user.IsAdmin || user.Id == announcement.Id)
             {
-                User? user = await _usersUnitOfWork.Repository<User>().GetByIdAsync(request.UserId, cancellationToken);
+                announcement.Number = request.Number;
+                announcement.Text = request.Text;
+                announcement.Image = image;
+                announcement.Rating = request.Rating;
+                announcement.ExpirationDate = expirationDate;
 
-                if (user == null)
-                    throw new NotFoundException("User not found");
+                await _announcementsUnitOfWork.Repository<Announcement>()
+                    .UpdateAsync(announcement, cancellationToken);
+                await _announcementsUnitOfWork.SaveAsync(cancellationToken);
+            }
+            else
+                throw new BadRequestException("To update or remove announcements can only admin or owner.");
 
-                Announcement? announcement = await _announcementsUnitOfWork.Repository<Announcement>()
-                    .GetByIdAsync(request.Id, cancellationToken);
-
-                if (announcement == null)
-                    throw new NotFoundException("Announcement not found");
-
-                await CheckUniqueNumberAsync(announcement, request.Number, cancellationToken);
-
-                FileDto? fileDto = await _fileStorage.GetFileAsync(request.Image.FileName, request.Image.FileData);
-
-                if (fileDto == null)
-                    throw new NotFoundException("Image not found");
-
-                File image = new File(fileDto.Name, fileDto.Extension, fileDto.Path);
-                DateTime expirationDate = request.ExpirationDate.ToDateTime(TimeOnly.MinValue);
-                
-                if (user.IsAdmin || user.Id == announcement.Id)
-                {
-                    announcement.Number = request.Number;
-                    announcement.Text = request.Text;
-                    announcement.Image = image;
-                    announcement.Rating = request.Rating;
-                    announcement.ExpirationDate = expirationDate;
-
-                    await _announcementsUnitOfWork.Repository<Announcement>()
-                        .UpdateAsync(announcement, cancellationToken);
-                    await _announcementsUnitOfWork.SaveAsync(cancellationToken);
-                }
-                else
-                    throw new BadRequestException("To update or remove announcements can only admin or owner.");
-
-                return await Task.FromResult(new Result<Guid>(request.Id, "Announcement was updated"));
-            });
+            return await Task.FromResult(new Result<Guid>(request.Id, "Announcement was updated"));
+            
         }
 
         private async Task CheckUniqueNumberAsync(Announcement announcement, int newNumber, CancellationToken cancellationToken)

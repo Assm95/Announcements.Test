@@ -30,22 +30,19 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
 
         public async Task<Result<AnnouncementDto>> Handle(GetAnnouncementQuery request, CancellationToken cancellationToken)
         {
-            return await ExceptionWrapper<Result<AnnouncementDto>>.Catch(async () =>
-            {
-                var query = _announcementsUnitOfWork.Repository<Announcement>().Entities;
-                query = query.Include(x => x.User);
+            var query = _announcementsUnitOfWork.Repository<Announcement>().Entities;
+            query = query.Include(x => x.User);
 
-                Announcement ? announcement = await query.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+            Announcement ? announcement = await query.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-                if (announcement == null)
-                    throw new NotFoundException("Announcement not found");
+            if (announcement == null)
+                throw new NotFoundException("Announcement not found");
 
-                AnnouncementDto announcementDto = _mapper.Map<AnnouncementDto>(announcement);
-                announcementDto.Image.FileData = await _fileStorage.GetFileDataAsync(announcementDto.Image.FileName) ??
-                                                 throw new NotFoundException("File not found");
+            AnnouncementDto announcementDto = _mapper.Map<AnnouncementDto>(announcement);
+            announcementDto.Image.FileData = await _fileStorage.GetFileDataAsync(announcementDto.Image.FileName) ??
+                                             throw new NotFoundException("File not found");
 
-                return await Task.FromResult(new Result<AnnouncementDto>(announcementDto));
-            });
+            return await Task.FromResult(new Result<AnnouncementDto>(announcementDto));
         }
     }
 }

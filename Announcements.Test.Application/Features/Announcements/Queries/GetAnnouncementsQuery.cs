@@ -59,8 +59,7 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
         {
             var query = _announcementsUnitOfWork.Repository<Announcement>().Entities;
             query = query.Include(x => x.User);
-                
-
+            
             if (!string.IsNullOrWhiteSpace(request.SearchString))
                 query = SearchBy(query, request.SearchString);
 
