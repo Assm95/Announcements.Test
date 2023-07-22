@@ -57,7 +57,7 @@ namespace Announcements.Test.WebApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(ApiOkResponse<Guid>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ApiOkResponse<Guid>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CreateAnnouncementAsync([FromBody] CreateAnnouncementCommand command,
             CancellationToken cancellationToken)
