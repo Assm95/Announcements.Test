@@ -4,7 +4,7 @@ namespace Announcements.Test.Shared
 {
     public class Result<T> : IResult<T>
     {
-        public T? Data { get; }
+        public T Data { get; }
         public List<string> Messages { get; } = new ();
 
 #pragma warning disable CS8618

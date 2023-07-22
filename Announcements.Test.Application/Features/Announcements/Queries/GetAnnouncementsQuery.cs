@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 using Announcements.Test.Application.Common.Exceptions;
 using Announcements.Test.Application.DTO;
 using Announcements.Test.Application.Interfaces;
@@ -12,12 +6,13 @@ using Announcements.Test.Application.Interfaces.Repositories;
 using Announcements.Test.Domain.Entities;
 using Announcements.Test.Shared;
 using AutoMapper;
+using DelegateDecompiler.EntityFrameworkCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Announcements.Test.Application.Features.Announcements.Queries
 {
-    public class GetAnnouncementsQuery : IRequest<Result<List<AnnouncementDto>>>
+    public class GetAnnouncementsQuery : IRequest<Result<PagedList<AnnouncementDto>>>
     {
         #region Sorting
 
@@ -47,7 +42,7 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
         public bool IncludeImageData { get; set; }
     }
 
-    internal class GetAnnouncementsQueryHandler : IRequestHandler<GetAnnouncementsQuery, Result<List<AnnouncementDto>>>
+    internal class GetAnnouncementsQueryHandler : IRequestHandler<GetAnnouncementsQuery, Result<PagedList<AnnouncementDto>>>
     {
         private readonly IUnitOfWork _announcementsUnitOfWork;
         private readonly IMapper _mapper;
@@ -60,41 +55,52 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
             _fileStorage = fileStorage;
         }
 
-        public async Task<Result<List<AnnouncementDto>>> Handle(GetAnnouncementsQuery request, CancellationToken cancellationToken)
+        public async Task<Result<PagedList<AnnouncementDto>>> Handle(GetAnnouncementsQuery request, CancellationToken cancellationToken)
         {
-            return await ExceptionWrapper<Result<List<AnnouncementDto>>>.Catch(async () =>
-            {
-                var query = _announcementsUnitOfWork.Repository<Announcement>().Entities;
-                query = query.Include(x => x.User);
-                    
-
-                if (!string.IsNullOrWhiteSpace(request.SearchString))
-                    query = SearchBy(query, request.SearchString);
-
-                if (request.Filter != null)
-                    query = FilterBy(query, request.Filter);
-
-                if (request.Pagination != null)
-                    query = GetPagination(query, request.Pagination);
-
-                if(request.Sort != null)
-                    query = SortBy(query, request.Sort);
-
-                var announcementsList = await query.ToListAsync(cancellationToken);
-
-                List<AnnouncementDto> listAnnouncementsDto = _mapper.Map<List<AnnouncementDto>>(announcementsList);
-
-                if (request.IncludeImageData)
-                {
-                    foreach (var dto in listAnnouncementsDto)
-                    {
-                        dto.Image.FileData = await _fileStorage.GetFileDataAsync(dto.Image.FileName) ??
-                                             throw new NotFoundException("File not found");
-                    }
-                }
+            var query = _announcementsUnitOfWork.Repository<Announcement>().Entities;
+            query = query.Include(x => x.User);
                 
-                return await Task.FromResult(new Result<List<AnnouncementDto>>(listAnnouncementsDto));
-            });
+
+            if (!string.IsNullOrWhiteSpace(request.SearchString))
+                query = SearchBy(query, request.SearchString);
+
+            if (request.Filter != null)
+                query = FilterBy(query, request.Filter);
+            
+            if(request.Sort != null)
+                query = SortBy(query, request.Sort);
+
+            var totalCount = await query.DecompileAsync().LongCountAsync(cancellationToken);
+
+            if (request.Pagination != null)
+                query = GetPagination(query, request.Pagination);
+
+            var announcementsList = await query.ToListAsync(cancellationToken);
+
+            List<AnnouncementDto> listAnnouncementsDto = _mapper.Map<List<AnnouncementDto>>(announcementsList);
+
+            if (request.IncludeImageData)
+            {
+                foreach (var dto in listAnnouncementsDto)
+                {
+                    dto.Image.FileData = await _fileStorage.GetFileDataAsync(dto.Image.FileName) ??
+                                         throw new NotFoundException("File not found");
+                }
+            }
+
+            var pagesCount = request.Pagination?.PageSize == null
+                ? 0
+                : Math.Ceiling(totalCount / (decimal)request.Pagination.PageSize);
+
+            var result = new PagedList<AnnouncementDto>(listAnnouncementsDto,
+                request.Pagination?.PageNumber ?? 0,
+                request.Pagination?.PageSize ?? 0,
+                totalCount,
+                Convert.ToInt32(pagesCount)
+                );
+
+            return await Task.FromResult(new Result<PagedList<AnnouncementDto>>(result));
+            
         }
 
 

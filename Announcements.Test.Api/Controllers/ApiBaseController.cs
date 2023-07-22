@@ -24,10 +24,5 @@ namespace Announcements.Test.WebApi.Controllers
         {
             return Ok(new ApiOkResponse<T>(result));
         }
-
-        protected IActionResult ApiOk201<T>(T result)
-        {
-            return Ok(new ApiOk201Response<T>(result));
-        }
     }
 }

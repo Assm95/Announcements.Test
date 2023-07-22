@@ -3,6 +3,7 @@ using Announcements.Test.Application.Options;
 using Announcements.Test.Infrastructure.Extensions;
 using Announcements.Test.Infrastructure.Options;
 using Announcements.Test.Persistence.Extensions;
+using Announcements.Test.WebApi.Middlewares;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ErrorWrappingMiddleware>();
 app.UseStatusCodePagesWithReExecute("/error/{0}");
 app.UseExceptionHandler("/error");
 

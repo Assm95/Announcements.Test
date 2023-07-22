@@ -19,7 +19,7 @@ namespace Announcements.Test.WebApi.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(ApiOkResponse<List<AnnouncementDto>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiPagedOkResponse<List<AnnouncementDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAnnouncementsAsync([FromQuery] FilterAnnouncementsDto? filter,
             [FromQuery] PaginationDto? pagination, [FromQuery] SortAnnouncementsDto? sort, string? searchString,
             bool includeImageData = false, CancellationToken cancellationToken = default)
@@ -35,8 +35,11 @@ namespace Announcements.Test.WebApi.Controllers
             };
 
             var result = await _mediator.Send(query, cancellationToken);
-            
-            return ApiOk(result.Data);
+            var pagedData = result.Data;
+            var response = new ApiPagedOkResponse<List<AnnouncementDto>>(pagedData.Data, pagedData.PageNumber,
+                pagedData.PageSize, pagedData.TotalCount, pagedData.PagesCount);
+
+            return Ok(response);
         }
 
         [HttpGet]
@@ -54,14 +57,14 @@ namespace Announcements.Test.WebApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(ApiOk201Response<Guid>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ApiOkResponse<Guid>), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CreateAnnouncementAsync([FromBody] CreateAnnouncementCommand command,
             CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(command, cancellationToken);
 
-            return ApiOk201(result.Data);
+            return ApiOk(result.Data);
         }
 
         [HttpPatch]
