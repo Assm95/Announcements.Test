@@ -13,7 +13,7 @@ namespace Announcements.Test.Infrastructure.Services
         {
             _options = options.Value;
         }
-        public async Task<FileDto?> GetFileAsync(string name, byte[] data)
+        public async Task<FileDto?> SaveFileAsync(string name, byte[] data)
         {
             string fileName = Path.Combine(_options.Path, name);
             await File.WriteAllBytesAsync(fileName, data);
@@ -29,14 +29,9 @@ namespace Announcements.Test.Infrastructure.Services
             };
         }
 
-        public async Task<byte[]?> GetFileDataAsync(string name)
+        public async Task<bool> FileExistAsync(string path)
         {
-            string fileName = Path.Combine(_options.Path, name);
-            
-            if (!File.Exists(fileName))
-                return null;
-
-            return await File.ReadAllBytesAsync(fileName);
+            return await Task.FromResult(File.Exists(path));
         }
     }
 }

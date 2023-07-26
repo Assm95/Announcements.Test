@@ -39,7 +39,6 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
 
         #endregion
 
-        public bool IncludeImageData { get; set; }
     }
 
     internal class GetAnnouncementsQueryHandler : IRequestHandler<GetAnnouncementsQuery, Result<PagedList<AnnouncementDto>>>
@@ -75,17 +74,7 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
                 query = GetPagination(query, request.Pagination);
 
             var announcementsList = await query.ToListAsync(cancellationToken);
-
             List<AnnouncementDto> listAnnouncementsDto = _mapper.Map<List<AnnouncementDto>>(announcementsList);
-
-            if (request.IncludeImageData)
-            {
-                foreach (var dto in listAnnouncementsDto)
-                {
-                    dto.Image.FileData = await _fileStorage.GetFileDataAsync(dto.Image.FileName) ??
-                                         throw new NotFoundException("File not found");
-                }
-            }
 
             var pagesCount = request.Pagination?.PageSize == null
                 ? 0
@@ -99,7 +88,6 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
                 );
 
             return await Task.FromResult(new Result<PagedList<AnnouncementDto>>(result));
-            
         }
 
 

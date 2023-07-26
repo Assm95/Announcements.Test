@@ -59,7 +59,7 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
             if(request.Image.FileData == null)
                 throw new BadRequestException($"File can't be empty");
 
-            FileDto? fileDto = await _fileStorage.GetFileAsync(request.Image.FileName, request.Image.FileData);
+            FileDto? fileDto = await _fileStorage.SaveFileAsync(request.Image.FileName, request.Image.FileData);
 
             if (fileDto == null)
                 throw new NotFoundException("Image not found");

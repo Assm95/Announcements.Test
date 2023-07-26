@@ -10,7 +10,7 @@
 
         public string Text { get; set; } = null!;
 
-        public ImageDto Image { get; set; } = null!;
+        public string? ImageUrl { get; set; }
 
         public int Rating { get; set; }
 

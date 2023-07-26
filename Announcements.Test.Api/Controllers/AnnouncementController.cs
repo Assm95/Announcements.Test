@@ -22,16 +22,14 @@ namespace Announcements.Test.WebApi.Controllers
         [ProducesResponseType(typeof(ApiPagedOkResponse<List<AnnouncementDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAnnouncementsAsync([FromQuery] FilterAnnouncementsDto? filter,
             [FromQuery] PaginationDto? pagination, [FromQuery] SortAnnouncementsDto? sort, string? searchString,
-            bool includeImageData = false, CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default)
         {
-
             var query = new GetAnnouncementsQuery
             {
                 SearchString = searchString,
                 Pagination = pagination,
                 Filter = filter,
                 Sort = sort,
-                IncludeImageData = includeImageData
             };
 
             var result = await _mediator.Send(query, cancellationToken);

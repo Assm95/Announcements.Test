@@ -58,7 +58,7 @@ namespace Announcements.Test.Application.Features.Announcements.Commands
 
             await CheckUniqueNumberAsync(announcement, request.Number, cancellationToken);
 
-            FileDto? fileDto = await _fileStorage.GetFileAsync(request.Image.FileName, request.Image.FileData);
+            FileDto? fileDto = await _fileStorage.SaveFileAsync(request.Image.FileName, request.Image.FileData);
 
             if (fileDto == null)
                 throw new NotFoundException("Image not found");

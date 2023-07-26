@@ -39,8 +39,6 @@ namespace Announcements.Test.Application.Features.Announcements.Queries
                 throw new NotFoundException("Announcement not found");
 
             AnnouncementDto announcementDto = _mapper.Map<AnnouncementDto>(announcement);
-            announcementDto.Image.FileData = await _fileStorage.GetFileDataAsync(announcementDto.Image.FileName) ??
-                                             throw new NotFoundException("File not found");
 
             return await Task.FromResult(new Result<AnnouncementDto>(announcementDto));
         }

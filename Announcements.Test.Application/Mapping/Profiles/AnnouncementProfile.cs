@@ -8,7 +8,10 @@ namespace Announcements.Test.Application.Mapping.Profiles
     {
         public AnnouncementProfile()
         {
-            CreateMap<Announcement, AnnouncementDto>();
+            CreateMap<Announcement, AnnouncementDto>()
+                .ForMember(dest => dest.ImageUrl,
+                    opt => opt.MapFrom(x =>
+                        !string.IsNullOrWhiteSpace(x.Image.Path) ? new Uri(x.Image.Path).AbsoluteUri : null));
         }
     }
 }
