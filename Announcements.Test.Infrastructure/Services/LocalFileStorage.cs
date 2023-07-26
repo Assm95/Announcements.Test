@@ -28,10 +28,5 @@ namespace Announcements.Test.Infrastructure.Services
                 Extension = Path.GetExtension(name).TrimStart('.')
             };
         }
-
-        public async Task<bool> FileExistAsync(string path)
-        {
-            return await Task.FromResult(File.Exists(path));
-        }
     }
 }
